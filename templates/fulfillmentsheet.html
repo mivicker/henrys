@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Your page title here :)</title>
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        {% for route in order.routes %}
+        {% for stop in route['stops'] %}
+        <div class="order">
+           <div class="client-info">
+                <div id="date"><p>{{ order.date }}</p></div>
+                <div id="time"><p>{{ order.time }}</p></div>
+                <div id="route"><p>Route</p></div>
+                <div id="stop"><p>Stop</p></div>
+                <div id="box-type"><h1>{{ stop['Box Type'] }}</h1></div>
+                <div id="menu"><h1>{{ stop['Box Menu'] }}</h1></div>
+                <div id="box-size"><h1>{{ stop['Box Size'] }}</h1></div>
+                <div id="route-name"><h1>{{ route['name'] }}</h1></div>
+                <div id="stop-number"><h1>{{ stop['Stop #'] }}</h1></div>
+                <div id="adjustments"><p>Adjustments</p></div>
+                <div id="health-plan"><p>Health Plan</p></div>
+                <div id="health-plan-text"><p>{{ stop['HealthPlan'] }}</p></div>
+                <div id="adjustment-text">
+                    <p></p>
+                </div>
+                <div id="member-id"><p>Member ID</p></div>
+                <div id="member-id-text"><p>{{ stop['Member ID'] }}</p></div>
+                <div id="main-contact"><p>Main Contact</p></div>
+                <div id="main-contact-text"><p>{{ stop['MainContact'] }}</p></div>
+            </div>
+            <div id="delivery-notes">
+                <p>{{ stop['Delivery Notes'] }}</p>
+            </div>
+            <div id="products">
+                {% for rack in stop['Racks'] %}
+                {% if rack['name'] == 'Dock' %}
+                <div id="beam"><p>Pack day of</p></div>
+                {% endif %}
+                <div id="rack-name">
+                    <p>{{ rack['name'] }}</p>
+                </div>
+                <div id="quantity">
+                    <p>Quantity</p>
+                </div>
+                    {% for item in rack['items'] %}
+                    <div id="item-code">
+                        <p>{{ item['Item Code'] }}</p>
+                    </div>
+                    <div id="description">
+                        <p>{{item[ 'Description'] }}</p>
+                    </div>
+                    <div id="quantity-text">
+                        <p>{{ item['Quantity'] }}</p>
+                    </div>
+                    <div id="check"></div>
+
+                    {% endfor %}
+                {% endfor %}
+            </div>
+            <div id="info-line">Gleaners Healthcare Programs Warehouse Fulfillment Ticket</div>
+        </div>
+        {% endfor %}
+        {% endfor %}
+    </body>
+</html>
